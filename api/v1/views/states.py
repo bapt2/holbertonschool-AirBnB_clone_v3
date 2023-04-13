@@ -17,6 +17,7 @@ def get_state():
         state_list.append(states.to_dict())
     return jsonify(state_list)
 
+
 @app_views.route('/states/<state_id>', methods=['GET'])
 def error_state(state_id):
     states = storage.get(state, state_id)
@@ -39,7 +40,7 @@ def delete_state(state_id):
 def create_state():
     if not request.json:
         abort(400, 'Not a JSON')
-    if not 'name' in request.json:
+    if 'name' not in request.json:
         abort(400, 'Missing name')
     nstate = {}
     storage.save(nstate)
@@ -53,7 +54,7 @@ def update_state(state_id):
         abort('404')
     if not request.json:
         abort(400, 'Not a JSON')
-    if not 'name' in request.json:
+    if 'name' not in request.json:
         abort(400, 'Missing name')
     nstate = {}
     storage.save(nstate)
