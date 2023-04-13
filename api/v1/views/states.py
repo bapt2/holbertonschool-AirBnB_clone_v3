@@ -4,7 +4,7 @@ Create a new view for State objects that handles all
 default RESTFul API actions:
 '''
 
-from models import state
+from models.state import State
 from models import storage
 from api.v1.views import app_views
 from flask import jsonify, abort, request
@@ -13,7 +13,7 @@ from flask import jsonify, abort, request
 @app_views.route('/states', methods=['GET'], strict_slashes=False)
 def get_state():
     state_list = []
-    all_state = storage.all(state).value()
+    all_state = storage.all(State).value()
     for states in all_state:
         state_list.append(states.to_dict())
     return jsonify(state_list)
@@ -21,7 +21,7 @@ def get_state():
 
 @app_views.route('/states/<state_id>', methods=['GET'], strict_slashes=False)
 def error_state(state_id):
-    states = storage.get(state, state_id)
+    states = storage.get(State, state_id)
     if states is None:
         abort(404)
     return jsonify(states)
@@ -30,7 +30,7 @@ def error_state(state_id):
 @app_views.route('/states/<state_id>', methods=['DELETE'],
                  strict_slashes=False)
 def delete_state(state_id):
-    states = storage.get(state, state_id)
+    states = storage.get(State, state_id)
     if states is None:
         abort(404)
     states.delete()
@@ -51,7 +51,7 @@ def create_state():
 
 @app_views.route('/states/<state_id>', methods=['PUT'], strict_slashes=False)
 def update_state(state_id):
-    states = storage.get(state, state_id)
+    states = storage.get(State, state_id)
     if states is None:
         abort(404)
     if not request.json:
