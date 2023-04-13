@@ -59,4 +59,4 @@ def update_state(state_id):
     if 'name' not in request.json:
         abort(400, 'Missing name')
     states.save()
-    return jsonify(states.to_dict), 200
+    return jsonify(states.to_dict()), 200
