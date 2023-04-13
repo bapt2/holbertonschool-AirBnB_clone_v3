@@ -84,7 +84,8 @@ def update_state(review_id):
         abort(400, 'Not a JSON')
 
     for key, value in rget_json.items():
-        if key not in ["id", "user_id", "place_id", "created_at", "updated_at"]:
-            setattr(place, key, value)
+        if key not in ["id", "user_id", "place_id",
+                       "created_at", "updated_at"]:
+            setattr(review, key, value)
     review.save()
     return jsonify(review.to_dict()), 200
