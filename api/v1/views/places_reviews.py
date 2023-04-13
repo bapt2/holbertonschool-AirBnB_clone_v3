@@ -69,7 +69,7 @@ def create_place(place_id):
     if 'text' not in rget_json:
         abort(400, 'Missing text')
 
-    new_review = Place(**rget_json)
+    new_review = Review(**rget_json)
     new_review.save()
     return jsonify(new_review.to_dict()), 201
 
