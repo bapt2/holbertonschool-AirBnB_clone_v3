@@ -61,7 +61,7 @@ def update_state(state_id):
         abort(400, 'Not a JSON')
 
     for key, value in rget_json:
-        if key not in ["id", "created_at", "updated_at"]:
-            setattr(states, key, value)
+        #if key not in ["id", "created_at", "updated_at"]:
+        setattr(states, key, value)
     states.save()
     return jsonify(states.to_dict()), 200
