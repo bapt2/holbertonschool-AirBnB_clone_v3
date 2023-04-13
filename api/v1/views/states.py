@@ -54,9 +54,9 @@ def update_state(state_id):
     states = storage.get(State, state_id)
     if states is None:
         abort(404)
-    if request.get_json is None:
+    if request.json is None:
         abort(400, 'Not a JSON')
-    if states.get('name') not in request.json:
+    if storage.get('name') not in request.json:
         abort(400, 'Missing name')
     states.save()
     return jsonify(states.to_dict()), 200
