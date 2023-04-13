@@ -13,7 +13,7 @@ from flask import jsonify, abort, request
 @app_views.route('/states', methods=['GET'], strict_slashes=False)
 def get_state():
     state_list = []
-    all_state = storage.all(State).value()
+    all_state = storage.all(State).values()
     for states in all_state:
         state_list.append(states.to_dict())
     return jsonify(state_list)
