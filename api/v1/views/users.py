@@ -19,7 +19,7 @@ def get_state():
     return jsonify(user_list)
 
 
-@app_views.route('/users/<users_id>', methods=['GET'], strict_slashes=False)
+@app_views.route('/users/<user_id>', methods=['GET'], strict_slashes=False)
 def error_state(user_id):
     users = storage.get(User, user_id)
     if users is None:
@@ -27,7 +27,7 @@ def error_state(user_id):
     return jsonify(users.to_dict())
 
 
-@app_views.route('/users/<users_id>', methods=['DELETE'],
+@app_views.route('/users/<user_id>', methods=['DELETE'],
                  strict_slashes=False)
 def delete_state(user_id):
     users = storage.get(User, user_id)
