@@ -23,11 +23,12 @@ def get_state():
 def error_state(state_id):
     states = storage.get(state, state_id)
     if states is None:
-        abort('404')
+        abort(404)
     return jsonify(states)
 
 
-@app_views.route('/states/<state_id>', methods=['DELETE'], strict_slashes=False)
+@app_views.route('/states/<state_id>', methods=['DELETE'],
+                 strict_slashes=False)
 def delete_state(state_id):
     states = storage.get(state, state_id)
     if states is None:
@@ -52,7 +53,7 @@ def create_state():
 def update_state(state_id):
     states = storage.get(state, state_id)
     if states is None:
-        abort('404')
+        abort(404)
     if not request.json:
         abort(400, 'Not a JSON')
     if 'name' not in request.json:
