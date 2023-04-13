@@ -12,7 +12,7 @@ from api.v1.views import app_views
 from flask import jsonify, abort, request
 
 
-@app_views.route('/places/cities/<city_id>/places', methods=['GET'],
+@app_views.route('/cities/<city_id>/places', methods=['GET'],
                  strict_slashes=False)
 def get_all_places(city_id):
     cities = storage.get(City, city_id)
