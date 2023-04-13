@@ -44,7 +44,7 @@ def delete_city(city_id):
 
 @app_views.route('states/<state_id>/cities', methods=['POST'],
                  strict_slashes=False)
-def create_state():
+def create_cities():
     rget_json = request.get_json()
     if rget_json is None:
         abort(400, 'Not a JSON')
@@ -57,7 +57,7 @@ def create_state():
 
 
 @app_views.route('cities/<city_id>', methods=['PUT'], strict_slashes=False)
-def update_state(state_id):
+def update_cities(state_id):
     city = storage.get(City, state_id)
     if city is None:
         abort(404)
