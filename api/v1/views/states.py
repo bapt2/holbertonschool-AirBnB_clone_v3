@@ -47,7 +47,7 @@ def create_state():
         abort(400, 'Missing name')
 
     nstate = State(*rget_json)
-    storage.save(nstate)
+    nstate.save()
     return jsonify(nstate.to_dict()), 201
 
 
