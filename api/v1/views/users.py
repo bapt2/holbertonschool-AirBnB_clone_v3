@@ -11,7 +11,7 @@ from flask import jsonify, abort, request
 
 
 @app_views.route('/users', methods=['GET'], strict_slashes=False)
-def get_state():
+def get_user():
     user_list = []
     all_user = storage.all(User).values()
     for states in all_user:
@@ -20,7 +20,7 @@ def get_state():
 
 
 @app_views.route('/users/<user_id>', methods=['GET'], strict_slashes=False)
-def error_state(user_id):
+def error_user(user_id):
     users = storage.get(User, user_id)
     if users is None:
         abort(404)
@@ -29,7 +29,7 @@ def error_state(user_id):
 
 @app_views.route('/users/<user_id>', methods=['DELETE'],
                  strict_slashes=False)
-def delete_state(user_id):
+def delete_user(user_id):
     users = storage.get(User, user_id)
     if users is None:
         abort(404)
@@ -39,7 +39,7 @@ def delete_state(user_id):
 
 
 @app_views.route('/users', methods=['POST'], strict_slashes=False)
-def create_state():
+def create_user():
     rget_json = request.get_json()
     if rget_json is None:
         abort(400, 'Not a JSON')
@@ -54,7 +54,7 @@ def create_state():
 
 
 @app_views.route('/users/<user_id>', methods=['PUT'], strict_slashes=False)
-def update_state(user_id):
+def update_user(user_id):
     users = storage.get(User, user_id)
     if users is None:
         abort(404)
