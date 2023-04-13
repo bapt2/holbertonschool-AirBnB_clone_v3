@@ -59,8 +59,8 @@ def update_state(state_id):
     rget_json = request.get_json()
     if rget_json is None:
         abort(400, 'Not a JSON')
-    if 'name' not in rget_json:
-        abort(400, 'Missing name')
 
+    for key, value in State:
+        setattr(states, key, value)
     states.save()
     return jsonify(states.to_dict()), 200
