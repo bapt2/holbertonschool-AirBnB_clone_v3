@@ -14,8 +14,8 @@ from flask import jsonify, abort, request
 def get_user():
     user_list = []
     all_user = storage.all(User).values()
-    for states in all_user:
-        user_list.append(states.to_dict())
+    for users in all_user:
+        user_list.append(users.to_dict())
     return jsonify(user_list)
 
 
