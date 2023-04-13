@@ -10,7 +10,6 @@ from api.v1.views import app_views
 from flask import jsonify, abort, request
 
 
-
 @app_views.route('/states', methods=['GET'], strict_slashes=False)
 def get_state():
     state_list = []
@@ -46,7 +45,7 @@ def create_state():
         abort(400, 'Not a JSON')
     if 'name' not in rget_json:
         abort(400, 'Missing name')
-    
+
     nstate = State(rget_json)
     storage.save(nstate)
     return jsonify(nstate.to_dict()), 201
@@ -57,11 +56,11 @@ def update_state(state_id):
     states = storage.get(State, state_id)
     if states is None:
         abort(404)
-    rget_json = request.get_json
+    rget_json = request.get_json()
     if rget_json is None:
         abort(400, 'Not a JSON')
     if 'name' not in rget_json:
         abort(400, 'Missing name')
-    
+
     states.save()
     return jsonify(states.to_dict()), 200
