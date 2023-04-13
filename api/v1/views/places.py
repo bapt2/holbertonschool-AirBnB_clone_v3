@@ -68,6 +68,7 @@ def create_place(city_id):
     if 'name' not in rget_json:
         abort(400, 'Missing name')
 
+    rget_json['city_id'] = city_id
     new_place = Place(**rget_json)
     new_place.save()
     return jsonify(new_place.to_dict()), 201
