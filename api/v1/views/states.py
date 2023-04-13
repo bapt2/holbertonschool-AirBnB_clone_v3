@@ -54,7 +54,7 @@ def update_state(state_id):
     states = storage.get(State, state_id)
     if states is None:
         abort(404)
-    if request.json is None :
+    if request.json is None:
         abort(400, 'Not a JSON')
     if 'name' not in request.json:
         abort(400, 'Missing name')
