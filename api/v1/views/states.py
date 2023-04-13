@@ -46,7 +46,7 @@ def create_state():
     if 'name' not in rget_json:
         abort(400, 'Missing name')
 
-    nstate = State(*rget_json)
+    nstate = State(**rget_json)
     nstate.save()
     return jsonify(nstate.to_dict()), 201
 
