@@ -60,7 +60,7 @@ def update_state(state_id):
     if rget_json is None:
         abort(400, 'Not a JSON')
 
-    for key, value in State:
+    for key, value in rget_json:
         setattr(states, key, value)
     states.save()
     return jsonify(states.to_dict()), 200
