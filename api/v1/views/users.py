@@ -61,7 +61,6 @@ def update_user(user_id):
     rget_json = request.get_json()
     if rget_json is None:
         abort(400, 'Not a JSON')
-
     for key, value in rget_json.items():
         if key not in ["id", "email", "created_at", "updated_at"]:
             setattr(users, key, value)
