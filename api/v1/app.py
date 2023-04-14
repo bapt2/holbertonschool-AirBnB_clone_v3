@@ -14,6 +14,7 @@ app = Flask(__name__)
 app.register_blueprint(app_views, url_prefix='/api/v1')
 cors = CORS(app, resources={r'/*': {"origins": "0.0.0.0"}})
 
+
 @app.teardown_appcontext
 def teardown_db(exception):
     """closes the storage on teardown"""
